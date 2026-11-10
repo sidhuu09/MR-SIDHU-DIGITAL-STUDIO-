@@ -17,11 +17,12 @@
   --muted:#b9b9b9;
   --line:#343434;
   --green:#31c477;
+  --red:#ff5555;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;background:#101010;color:var(--white);
+  margin:0;background:#101010;color:white;
   font-family:Arial,Helvetica,sans-serif;line-height:1.5
 }
 button,input,select,textarea{font:inherit}
@@ -30,7 +31,8 @@ a{color:inherit;text-decoration:none}
 
 header{
   position:sticky;top:0;z-index:20;background:#111e;
-  border-bottom:1px solid var(--line);backdrop-filter:blur(12px)
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px)
 }
 .nav{
   min-height:72px;display:flex;align-items:center;
@@ -38,16 +40,18 @@ header{
 }
 .brand{font-weight:900;letter-spacing:.3px}
 .brand span{color:var(--yellow)}
-.navlinks{display:flex;gap:20px;align-items:center}
+.navlinks{display:flex;gap:18px;align-items:center}
 .navlinks a{font-size:14px;color:#eee}
 .navlinks a:hover{color:var(--yellow)}
 
 .btn{
   display:inline-flex;justify-content:center;align-items:center;
   border:0;border-radius:10px;padding:12px 17px;
-  font-weight:800;cursor:pointer;background:var(--yellow);color:#111
+  font-weight:800;cursor:pointer;background:var(--yellow);
+  color:#111
 }
 .btn.secondary{background:#292929;color:white;border:1px solid #444}
+.btn.danger{background:#8c2222;color:white}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .lang{
   background:#252525;color:white;border:1px solid #555;
@@ -67,10 +71,7 @@ header{
   color:var(--yellow);font-weight:800;
   letter-spacing:2px;font-size:12px
 }
-.hero h1{
-  font-size:clamp(36px,6vw,64px);
-  line-height:1.04;margin:14px 0
-}
+.hero h1{font-size:clamp(36px,6vw,64px);line-height:1.04;margin:14px 0}
 .hero p{color:#ccc;max-width:600px}
 .hero-card{
   background:#1b1b1b;border:1px solid #484000;
@@ -82,14 +83,10 @@ header{
 
 section{padding:55px 0}
 .section-head{margin-bottom:24px}
-.section-head h2{
-  font-size:clamp(25px,4vw,36px);margin:0 0 6px
-}
+.section-head h2{font-size:clamp(25px,4vw,36px);margin:0 0 6px}
 .section-head p,.muted{color:var(--muted)}
 
-.cards{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:15px
-}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
 .service{
   background:var(--panel);border:1px solid var(--line);
   border-radius:15px;padding:20px
@@ -128,7 +125,6 @@ section{padding:55px 0}
 .field input:focus,.field select:focus,.field textarea:focus{
   border-color:var(--yellow)
 }
-.field small{color:var(--muted)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .upload{
   border:1px dashed #777;border-radius:13px;
@@ -138,7 +134,7 @@ section{padding:55px 0}
 .summary{position:sticky;top:95px;height:max-content}
 .summary-row{
   display:flex;justify-content:space-between;
-  padding:10px 0;border-bottom:1px solid var(--line)
+  gap:12px;padding:10px 0;border-bottom:1px solid var(--line)
 }
 .notice{
   padding:12px;border-radius:10px;background:#302900;
@@ -158,17 +154,75 @@ footer{
   gap:20px;flex-wrap:wrap
 }
 
+/* ADMIN DASHBOARD */
+#adminSection{display:none;background:#0b0b0b}
+.admin-box{
+  background:var(--panel);border:1px solid var(--line);
+  padding:22px;border-radius:16px;margin-bottom:18px
+}
+.admin-login{max-width:480px;margin:auto}
+.admin-login input{
+  width:100%;padding:13px;margin:7px 0 15px;
+  background:#101010;border:1px solid #555;
+  border-radius:9px;color:white
+}
+.admin-toolbar{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:12px;flex-wrap:wrap
+}
+.admin-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  margin:20px 0
+}
+.stat{
+  background:#111;padding:17px;border:1px solid #444;
+  border-radius:12px
+}
+.stat strong{
+  display:block;color:var(--yellow);
+  font-size:26px;margin-top:5px
+}
+.table-wrap{overflow-x:auto}
+table{
+  width:100%;border-collapse:collapse;
+  min-width:900px;font-size:13px
+}
+th,td{
+  padding:12px 10px;text-align:left;
+  border-bottom:1px solid #393939;
+  vertical-align:middle
+}
+th{color:var(--yellow);background:#151515}
+td select{
+  background:#111;color:white;border:1px solid #555;
+  border-radius:7px;padding:8px;max-width:145px
+}
+td .btn{padding:8px 10px;font-size:12px;margin:3px}
+.status{
+  display:inline-block;padding:4px 9px;
+  border-radius:20px;font-size:11px;font-weight:bold;
+  background:#403700;color:#ffe98a
+}
+.status.paid{background:#123c28;color:#70e5a5}
+.status.completed{background:#123c28;color:#70e5a5}
+.status.cancelled{background:#4b1d1d;color:#ff9999}
+#adminMessage{margin:12px 0;color:#ffe98a}
+.empty{text-align:center;padding:30px;color:#aaa}
+.hidden{display:none!important}
+
 @media(max-width:800px){
   .hero-grid,.order-grid{grid-template-columns:1fr}
   .cards{grid-template-columns:repeat(2,1fr)}
   .summary{position:static}
   .navlinks{display:none}
   .hero{padding-top:48px}
+  .admin-stats{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:440px){
   .cards,.two{grid-template-columns:1fr}
   .panel{padding:17px}
   .nav{min-height:64px}
+  .admin-box{padding:14px}
 }
 </style>
 </head>
@@ -180,10 +234,11 @@ footer{
   <a class="brand" href="#home">MR SIDHU <span>DIGITAL STUDIO</span></a>
 
   <nav class="navlinks">
-    <a href="#home" data-en="Home" data-or="ହୋମ୍">Home</a>
-    <a href="#services" data-en="Services" data-or="ସେବା">Services</a>
-    <a href="#order" data-en="Place Order" data-or="ଅର୍ଡର କରନ୍ତୁ">Place Order</a>
-    <a href="#contact" data-en="Contact" data-or="ଯୋଗାଯୋଗ">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#order">Place Order</a>
+    <a href="#contact">Contact</a>
+    <a href="#adminSection">Admin</a>
   </nav>
 
   <select class="lang" id="language" aria-label="Choose language">
@@ -197,160 +252,91 @@ footer{
 
 <section class="hero" id="home">
 <div class="wrap hero-grid">
-
   <div>
-    <div class="eyebrow"
-      data-en="YOUR LOCAL DIGITAL PRINTING PARTNER"
-      data-or="ଆପଣଙ୍କର ଡିଜିଟାଲ୍ ପ୍ରିଣ୍ଟିଂ ସେବା">
-      YOUR LOCAL DIGITAL PRINTING PARTNER
-    </div>
-
-    <h1
-      data-en="Print Smart.<br>Print Easy."
-      data-or="ସହଜରେ ପ୍ରିଣ୍ଟ୍ କରନ୍ତୁ।<br>ସ୍ମାର୍ଟ ଭାବେ ପ୍ରିଣ୍ଟ୍ କରନ୍ତୁ।">
-      Print Smart.<br>Print Easy.
-    </h1>
-
-    <p
-      data-en="Upload your document or photo, choose your print size and submit an order from your mobile or computer."
-      data-or="ମୋବାଇଲ୍ କିମ୍ବା କମ୍ପ୍ୟୁଟରରୁ ଡକ୍ୟୁମେଣ୍ଟ୍ ବା ଫଟୋ ଅପଲୋଡ୍ କରନ୍ତୁ, ସାଇଜ୍ ବାଛନ୍ତୁ ଏବଂ ଅର୍ଡର୍ କରନ୍ତୁ।">
-      Upload your document or photo, choose your print size and submit an order from your mobile or computer.
+    <div class="eyebrow">YOUR LOCAL DIGITAL PRINTING PARTNER</div>
+    <h1>Print Smart.<br>Print Easy.</h1>
+    <p>
+      Upload your document or photo, choose your print size
+      and submit an order from your mobile or computer.
     </p>
-
     <div class="hero-actions">
-      <a class="btn" href="#order"
-        data-en="Start Printing" data-or="ପ୍ରିଣ୍ଟିଂ ଆରମ୍ଭ କରନ୍ତୁ">
-        Start Printing
-      </a>
-      <a class="btn secondary" href="#services"
-        data-en="View Services" data-or="ସେବା ଦେଖନ୍ତୁ">
-        View Services
-      </a>
+      <a class="btn" href="#order">Start Printing</a>
+      <a class="btn secondary" href="#services">View Services</a>
     </div>
   </div>
 
   <div class="hero-card">
     <div class="big print-mark">PRINT</div>
-    <h2
-      data-en="Digital Printing Made Simple"
-      data-or="ଡିଜିଟାଲ୍ ପ୍ରିଣ୍ଟିଂ ଏବେ ସହଜ">
-      Digital Printing Made Simple
-    </h2>
-
-    <p class="muted"
-      data-en="A4 documents | 4x6 photos | Passport photos | Colour and B/W"
-      data-or="A4 ଡକ୍ୟୁମେଣ୍ଟ୍ | 4x6 ଫଟୋ | ପାସପୋର୍ଟ ଫଟୋ | କଲର୍ ଓ B/W">
-      A4 documents | 4x6 photos | Passport photos | Colour and B/W
+    <h2>Digital Printing Made Simple</h2>
+    <p class="muted">
+      A4 documents | 4x6 photos | Passport photos |
+      Colour and B/W
     </p>
-
-    <div class="notice"
-      data-en="Live order details are connected to Firebase. File upload and payment will be added in later steps."
-      data-or="Live Order Firebase ସହିତ ଯୋଡ଼ାଯାଇଛି। File Upload ଓ Payment ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପରେ ଯୋଡ଼ାଯିବ।">
-      Live order details are connected to Firebase. File upload and payment will be added in later steps.
+    <div class="notice">
+      Online orders are connected to Firebase.
     </div>
   </div>
-
 </div>
 </section>
 
 <section id="services">
 <div class="wrap">
-
   <div class="section-head">
-    <h2 data-en="Our Printing Services" data-or="ଆମର ପ୍ରିଣ୍ଟିଂ ସେବା">
-      Our Printing Services
-    </h2>
-    <p data-en="Choose the service you need."
-       data-or="ଆପଣଙ୍କ ଆବଶ୍ୟକତା ଅନୁସାରେ ସେବା ବାଛନ୍ତୁ।">
-      Choose the service you need.
-    </p>
+    <h2>Our Printing Services</h2>
+    <p>Choose the service you need.</p>
   </div>
 
   <div class="cards">
-
     <article class="service">
       <div class="text-ico">A4</div>
       <h3>A4 Document</h3>
-      <p data-en="PDF and document printing, colour or black & white."
-         data-or="PDF ଓ ଡକ୍ୟୁମେଣ୍ଟ୍ ପ୍ରିଣ୍ଟ୍, କଲର୍ କିମ୍ବା କଳା-ଧଳା।">
-        PDF and document printing, colour or black & white.
-      </p>
+      <p>PDF and document printing, colour or black & white.</p>
     </article>
-
     <article class="service">
       <div class="text-ico">PHOTO</div>
       <h3>4x6 Photo</h3>
-      <p data-en="Print your favourite photos in 4x6 size."
-         data-or="ଆପଣଙ୍କ ପସନ୍ଦର ଫଟୋ 4x6 ସାଇଜ୍‌ରେ ପ୍ରିଣ୍ଟ୍।">
-        Print your favourite photos in 4x6 size.
-      </p>
+      <p>Print your favourite photos in 4x6 size.</p>
     </article>
-
     <article class="service">
       <div class="text-ico">ID</div>
       <h3>Passport Photo</h3>
-      <p data-en="Passport-size photo layout and printing."
-         data-or="ପାସପୋର୍ଟ ସାଇଜ୍ ଫଟୋ ଲେଆଉଟ୍ ଓ ପ୍ରିଣ୍ଟିଂ।">
-        Passport-size photo layout and printing.
-      </p>
+      <p>Passport-size photo layout and printing.</p>
     </article>
-
     <article class="service">
       <div class="text-ico">COLOR</div>
       <h3>Colour / B&W</h3>
-      <p data-en="Select colour or black & white for supported jobs."
-         data-or="ଉପଲବ୍ଧ ପ୍ରିଣ୍ଟ୍ ପାଇଁ କଲର୍ କିମ୍ବା କଳା-ଧଳା ବାଛନ୍ତୁ।">
-        Select colour or black & white for supported jobs.
-      </p>
+      <p>Select colour or black & white for supported jobs.</p>
     </article>
-
   </div>
 </div>
 </section>
 
 <section id="order">
 <div class="wrap">
-
   <div class="section-head">
-    <h2 data-en="Place Your Print Order"
-        data-or="ଆପଣଙ୍କ ପ୍ରିଣ୍ଟ୍ ଅର୍ଡର୍ କରନ୍ତୁ">
-      Place Your Print Order
-    </h2>
-    <p data-en="Fill in the details below. Please upload only files you have permission to print."
-       data-or="ନିମ୍ନରେ ତଥ୍ୟ ଦିଅନ୍ତୁ। ପ୍ରିଣ୍ଟ୍ କରିବାକୁ ଅନୁମତି ଥିବା ଫାଇଲ୍ ମାତ୍ର ଅପଲୋଡ୍ କରନ୍ତୁ।">
-      Fill in the details below. Please upload only files you have permission to print.
-    </p>
+    <h2>Place Your Print Order</h2>
+    <p>Fill in your details and submit your order.</p>
   </div>
 
   <div class="order-grid">
-
     <form class="panel" id="orderForm">
 
       <div class="two">
-
         <div class="field">
-          <label for="customer" data-en="Customer Name" data-or="ଗ୍ରାହକଙ୍କ ନାମ">
-            Customer Name
-          </label>
+          <label for="customer">Customer Name</label>
           <input id="customer" required maxlength="80"
             placeholder="Your full name">
         </div>
-
         <div class="field">
-          <label for="phone" data-en="Mobile Number" data-or="ମୋବାଇଲ୍ ନମ୍ବର">
-            Mobile Number
-          </label>
+          <label for="phone">Mobile Number</label>
           <input id="phone" required inputmode="numeric"
             pattern="[0-9]{10}" maxlength="10"
             placeholder="10-digit mobile">
         </div>
-
       </div>
 
       <div class="field">
-        <label for="printType" data-en="Print Type" data-or="ପ୍ରିଣ୍ଟ୍ ପ୍ରକାର">
-          Print Type
-        </label>
+        <label for="printType">Print Type</label>
         <select id="printType" required>
           <option value="A4 Document">A4 Document</option>
           <option value="4x6 Photo">4x6 Photo</option>
@@ -359,33 +345,22 @@ footer{
       </div>
 
       <div class="two">
-
         <div class="field">
-          <label for="colour" data-en="Print Mode" data-or="ପ୍ରିଣ୍ଟ୍ ମୋଡ୍">
-            Print Mode
-          </label>
+          <label for="colour">Print Mode</label>
           <select id="colour">
             <option>Colour</option>
             <option>Black & White</option>
           </select>
         </div>
-
         <div class="field">
-          <label for="quantity" data-en="Quantity / Copies" data-or="ପରିମାଣ / କପି">
-            Quantity / Copies
-          </label>
-          <input id="quantity" type="number" min="1" max="100"
-            value="1" required>
+          <label for="quantity">Quantity / Copies</label>
+          <input id="quantity" type="number" min="1"
+            max="100" value="1" required>
         </div>
-
       </div>
 
       <div class="field">
-        <label for="file" data-en="File Name (PDF, JPG, PNG)"
-          data-or="ଫାଇଲ୍ ନାମ (PDF, JPG, PNG)">
-          File Name (PDF, JPG, PNG)
-        </label>
-
+        <label for="file">File (PDF, JPG, PNG)</label>
         <div class="upload">
           <input id="file" type="file"
             accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
@@ -397,69 +372,45 @@ footer{
       </div>
 
       <div class="field">
-        <label for="notes" data-en="Instructions (optional)"
-          data-or="ନିର୍ଦ୍ଦେଶ (ଇଚ୍ଛାଧୀନ)">
-          Instructions (optional)
-        </label>
+        <label for="notes">Instructions (optional)</label>
         <textarea id="notes" rows="3" maxlength="300"
           placeholder="Any special instructions..."></textarea>
       </div>
 
-      <div class="notice"
-        data-en="Only order details and file name are saved in Firebase. The selected file itself is not uploaded. No payment is collected."
-        data-or="କେବଳ Order Details ଓ File Name Firebase ରେ Save ହେବ। ଫାଇଲ୍ Upload ହେବ ନାହିଁ ଏବଂ Payment ନିଆଯିବ ନାହିଁ।">
-        Only order details and file name are saved in Firebase. The selected file itself is not uploaded. No payment is collected.
+      <div class="notice">
+        Only order details and file name are saved in Firebase.
+        The selected file itself is not uploaded. No payment is collected.
       </div>
 
       <button class="btn" type="submit" id="submitOrder"
-        style="width:100%"
-        data-en="Submit Order" data-or="ଅର୍ଡର୍ ଦାଖଲ କରନ୍ତୁ">
+        style="width:100%">
         Submit Order
       </button>
 
       <div id="result" role="status" aria-live="polite"></div>
-
     </form>
 
     <aside class="panel summary">
-
-      <h3 data-en="Order Summary" data-or="ଅର୍ଡର୍ ସାରାଂଶ">
-        Order Summary
-      </h3>
-
+      <h3>Order Summary</h3>
       <div class="summary-row">
-        <span data-en="Print type" data-or="ପ୍ରିଣ୍ଟ୍ ପ୍ରକାର">Print type</span>
-        <strong id="sumType">A4 Document</strong>
+        <span>Print type</span><strong id="sumType">A4 Document</strong>
       </div>
-
       <div class="summary-row">
-        <span data-en="Mode" data-or="ମୋଡ୍">Mode</span>
-        <strong id="sumColour">Colour</strong>
+        <span>Mode</span><strong id="sumColour">Colour</strong>
       </div>
-
       <div class="summary-row">
-        <span data-en="Quantity" data-or="ପରିମାଣ">Quantity</span>
-        <strong id="sumQty">1</strong>
+        <span>Quantity</span><strong id="sumQty">1</strong>
       </div>
-
       <div class="summary-row">
-        <span data-en="Order Status" data-or="ଅର୍ଡର୍ ସ୍ଥିତି">Order Status</span>
-        <strong>Pending</strong>
+        <span>Order Status</span><strong>Pending</strong>
       </div>
-
       <div class="summary-row">
-        <span data-en="Payment" data-or="ପେମେଣ୍ଟ୍">Payment</span>
-        <strong>Unpaid</strong>
+        <span>Payment</span><strong>Unpaid</strong>
       </div>
-
-      <p class="muted" style="font-size:13px"
-        data-en="Final pricing will be confirmed by the studio."
-        data-or="ଅନ୍ତିମ ମୂଲ୍ୟ ଷ୍ଟୁଡିଓ ଦ୍ୱାରା ନିଶ୍ଚିତ ହେବ।">
+      <p class="muted" style="font-size:13px">
         Final pricing will be confirmed by the studio.
       </p>
-
     </aside>
-
   </div>
 </div>
 </section>
@@ -468,17 +419,120 @@ footer{
 <div class="wrap">
   <div class="panel">
     <div class="section-head">
-      <h2 data-en="Contact the Studio" data-or="ଷ୍ଟୁଡିଓ ସହିତ ଯୋଗାଯୋଗ">
-        Contact the Studio
-      </h2>
+      <h2>Contact the Studio</h2>
       <p>MR SIDHU DIGITAL STUDIO</p>
     </div>
-
-    <p class="muted"
-      data-en="Add your verified phone number, WhatsApp number and studio address here before publishing."
-      data-or="ପ୍ରକାଶ କରିବା ପୂର୍ବରୁ ଆପଣଙ୍କ ସଠିକ୍ ଫୋନ୍ ନମ୍ବର, WhatsApp ନମ୍ବର ଓ ଷ୍ଟୁଡିଓ ଠିକଣା ଏଠାରେ ଯୋଡ଼ନ୍ତୁ।">
-      Add your verified phone number, WhatsApp number and studio address here before publishing.
+    <p class="muted">
+      Add your verified phone number, WhatsApp number
+      and studio address here before publishing.
     </p>
+  </div>
+</div>
+</section>
+
+<!-- ADMIN DASHBOARD -->
+<section id="adminSection">
+<div class="wrap">
+
+  <div class="section-head">
+    <h2>Admin Dashboard</h2>
+    <p>MR SIDHU DIGITAL STUDIO - Order Management</p>
+  </div>
+
+  <!-- ADMIN LOGIN -->
+  <div class="admin-box admin-login" id="adminLoginBox">
+    <h3>Admin Login</h3>
+
+    <form id="adminLoginForm">
+      <label for="adminEmail">Admin Email</label>
+      <input id="adminEmail" type="email"
+        placeholder="Enter admin email" required>
+
+      <label for="adminPassword">Admin Password</label>
+      <input id="adminPassword" type="password"
+        placeholder="Enter password" required>
+
+      <button class="btn" id="adminLoginBtn"
+        type="submit" style="width:100%">
+        Login to Dashboard
+      </button>
+    </form>
+
+    <div id="loginError" style="color:#ff7777;margin-top:12px"></div>
+    <p class="muted" style="font-size:12px">
+      Only the authorized Firebase Admin account can access orders.
+    </p>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="adminDashboard" class="hidden">
+
+    <div class="admin-box">
+      <div class="admin-toolbar">
+        <div>
+          <h3 style="margin:0">Welcome, Admin</h3>
+          <small class="muted" id="adminEmailDisplay"></small>
+        </div>
+        <button class="btn danger" id="adminLogout" type="button">
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <div class="admin-stats">
+      <div class="stat">
+        Total Orders
+        <strong id="totalOrders">0</strong>
+      </div>
+      <div class="stat">
+        Pending
+        <strong id="pendingOrders">0</strong>
+      </div>
+      <div class="stat">
+        Paid
+        <strong id="paidOrders">0</strong>
+      </div>
+      <div class="stat">
+        Completed
+        <strong id="completedOrders">0</strong>
+      </div>
+    </div>
+
+    <div class="admin-box">
+      <div class="admin-toolbar">
+        <h3 style="margin:0">All Customer Orders</h3>
+        <button class="btn secondary" id="refreshOrders" type="button">
+          Refresh
+        </button>
+      </div>
+
+      <div id="adminMessage"></div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Mobile</th>
+              <th>Print Type</th>
+              <th>Mode</th>
+              <th>Qty</th>
+              <th>File</th>
+              <th>Payment</th>
+              <th>Order Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTable">
+            <tr>
+              <td colspan="10" class="empty">Loading orders...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>
 </section>
@@ -501,12 +555,29 @@ import {
   getFirestore,
   collection,
   addDoc,
-  serverTimestamp
+  serverTimestamp,
+  query,
+  orderBy,
+  onSnapshot,
+  doc,
+  updateDoc,
+  deleteDoc
 } from
 "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+
+/* FIREBASE CONFIG */
+
 const firebaseConfig = {
-  apiKey: "AIzaSyD2jg8WFlCZwoR-fqWXof4Vu65IWC9Z8YQ",
+  apiKey: "AIzaSyD2jg8WFlCZwoR-fWXof4Vu65IWC9Z8YQ",
   authDomain: "mr-sidhu-digital-studio.firebaseapp.com",
   projectId: "mr-sidhu-digital-studio",
   storageBucket: "mr-sidhu-digital-studio.firebasestorage.app",
@@ -516,6 +587,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+
+/* ADMIN UID - ONLY THIS UID IS ALLOWED */
+
+const ADMIN_UID = "90mUNYMsajchBRHVFfTj7fqcEr22";
+
 
 const $ = id => document.getElementById(id);
 
@@ -525,15 +603,21 @@ const submitButton = $("submitOrder");
 
 const MAX_FILE = 10 * 1024 * 1024;
 
+let unsubscribeOrders = null;
+let allOrders = [];
+
+
+/* GENERAL */
+
 $("year").textContent = new Date().getFullYear();
 
-function updateSummary() {
+function updateSummary(){
   $("sumType").textContent = $("printType").value;
   $("sumColour").textContent = $("colour").value;
   $("sumQty").textContent = $("quantity").value || "1";
 }
 
-["printType", "colour", "quantity"].forEach(id => {
+["printType","colour","quantity"].forEach(id => {
   $(id).addEventListener("input", updateSummary);
 });
 
@@ -541,9 +625,12 @@ fileInput.addEventListener("change", () => {
   const file = fileInput.files[0];
 
   $("fileInfo").textContent = file
-    ? `${file.name} · ${(file.size / 1024 / 1024).toFixed(2)} MB`
+    ? `${file.name} · ${(file.size/1024/1024).toFixed(2)} MB`
     : "Maximum 10 MB. File is not uploaded in this version.";
 });
+
+
+/* CUSTOMER ORDER SUBMISSION */
 
 form.addEventListener("submit", async event => {
 
@@ -557,27 +644,27 @@ form.addEventListener("submit", async event => {
   const notes = $("notes").value.trim();
   const file = fileInput.files[0];
 
-  if (!customerName || customerName.length > 80) {
+  if(!customerName || customerName.length > 80){
     alert("Please enter a valid customer name.");
     return;
   }
 
-  if (!/^[0-9]{10}$/.test(phone)) {
+  if(!/^[0-9]{10}$/.test(phone)){
     alert("Please enter a valid 10-digit mobile number.");
     return;
   }
 
-  if (!Number.isInteger(quantity) || quantity < 1 || quantity > 100) {
+  if(!Number.isInteger(quantity) || quantity < 1 || quantity > 100){
     alert("Quantity must be between 1 and 100.");
     return;
   }
 
-  if (!file) {
+  if(!file){
     alert("Please select a file.");
     return;
   }
 
-  if (file.size > MAX_FILE) {
+  if(file.size > MAX_FILE){
     alert("File size must be below 10 MB.");
     return;
   }
@@ -588,7 +675,7 @@ form.addEventListener("submit", async event => {
     "image/png"
   ];
 
-  if (!allowedTypes.includes(file.type)) {
+  if(!allowedTypes.includes(file.type)){
     alert("Only PDF, JPG and PNG files are allowed.");
     return;
   }
@@ -596,34 +683,32 @@ form.addEventListener("submit", async event => {
   submitButton.disabled = true;
   submitButton.textContent = "Submitting...";
 
-  try {
+  try{
 
     const orderData = {
-      customerName: customerName,
-      phone: phone,
-      printType: printType,
-      printMode: printMode,
-      quantity: quantity,
+      customerName,
+      phone,
+      printType,
+      printMode,
+      quantity,
       fileName: file.name,
-      notes: notes,
+      notes,
       status: "Pending",
       paymentStatus: "Unpaid",
       createdAt: serverTimestamp()
     };
 
     const docRef = await addDoc(
-      collection(db, "orders"),
+      collection(db,"orders"),
       orderData
     );
 
     const result = $("result");
-
     result.style.display = "block";
     result.textContent =
-      "ORDER SUBMITTED SUCCESSFULLY! " +
-      "Order ID: " + docRef.id +
-      " | Status: Pending | Payment: Unpaid. " +
-      "Please save your Order ID.";
+      "ORDER SUBMITTED SUCCESSFULLY! Order ID: " +
+      docRef.id +
+      " | Status: Pending | Payment: Unpaid. Please save your Order ID.";
 
     form.reset();
     updateSummary();
@@ -632,20 +717,16 @@ form.addEventListener("submit", async event => {
       "Maximum 10 MB. File is not uploaded in this version.";
 
     result.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
+      behavior:"smooth",
+      block:"center"
     });
 
-  } catch (error) {
+  }catch(error){
 
-    console.error("Firebase Order Error:", error);
+    console.error("Order Error:",error);
+    alert("Order submission failed: " + error.message);
 
-    alert(
-      "Order submission failed. Please try again. " +
-      error.message
-    );
-
-  } finally {
+  }finally{
 
     submitButton.disabled = false;
     submitButton.textContent = "Submit Order";
@@ -654,19 +735,409 @@ form.addEventListener("submit", async event => {
 
 });
 
+
+/* LANGUAGE */
+
 $("language").addEventListener("change", event => {
 
   const lang = event.target.value;
 
-  document.documentElement.lang =
-    lang === "or" ? "or" : "en";
+  document.documentElement.lang = lang === "or" ? "or" : "en";
 
-  document.querySelectorAll("[data-en]").forEach(element => {
+  // The existing English interface remains available.
+  // Additional Odia translations can be added later.
 
-    element.innerHTML =
-      element.dataset[lang] || element.dataset.en;
+});
+
+
+/* OPEN ADMIN SECTION */
+
+document.querySelectorAll('a[href="#adminSection"]').forEach(link => {
+  link.addEventListener("click", () => {
+    $("adminSection").style.display = "block";
+  });
+});
+
+
+/* ADMIN LOGIN */
+
+$("adminLoginForm").addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  const email = $("adminEmail").value.trim();
+  const password = $("adminPassword").value;
+
+  const loginBtn = $("adminLoginBtn");
+
+  loginBtn.disabled = true;
+  loginBtn.textContent = "Logging in...";
+  $("loginError").textContent = "";
+
+  try{
+
+    const credential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    if(credential.user.uid !== ADMIN_UID){
+
+      await signOut(auth);
+
+      throw new Error("This account is not authorized as Admin.");
+
+    }
+
+  }catch(error){
+
+    console.error("Admin Login Error:",error);
+    $("loginError").textContent =
+      error.code === "auth/invalid-credential"
+        ? "Incorrect email or password."
+        : error.message;
+
+  }finally{
+
+    loginBtn.disabled = false;
+    loginBtn.textContent = "Login to Dashboard";
+
+  }
+
+});
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(auth, user => {
+
+  if(user && user.uid === ADMIN_UID){
+
+    $("adminLoginBox").classList.add("hidden");
+    $("adminDashboard").classList.remove("hidden");
+    $("adminEmailDisplay").textContent = user.email || "";
+
+    startOrdersListener();
+
+  }else{
+
+    $("adminLoginBox").classList.remove("hidden");
+    $("adminDashboard").classList.add("hidden");
+
+    stopOrdersListener();
+
+  }
+
+});
+
+
+/* ADMIN LOGOUT */
+
+$("adminLogout").addEventListener("click", async () => {
+
+  try{
+
+    stopOrdersListener();
+    await signOut(auth);
+
+    $("adminLoginForm").reset();
+    $("loginError").textContent = "";
+
+    alert("Admin logged out successfully.");
+
+  }catch(error){
+
+    alert("Logout failed: " + error.message);
+
+  }
+
+});
+
+
+/* REAL-TIME FIRESTORE ORDERS */
+
+function startOrdersListener(){
+
+  if(auth.currentUser?.uid !== ADMIN_UID) return;
+
+  stopOrdersListener();
+
+  $("adminMessage").textContent = "Connecting to Firebase...";
+
+  const ordersQuery = query(
+    collection(db,"orders"),
+    orderBy("createdAt","desc")
+  );
+
+  unsubscribeOrders = onSnapshot(
+    ordersQuery,
+    snapshot => {
+
+      allOrders = snapshot.docs.map(item => ({
+        id:item.id,
+        ...item.data()
+      }));
+
+      renderOrders();
+
+      $("adminMessage").textContent =
+        "Live Firebase connection active.";
+
+    },
+    error => {
+
+      console.error("Orders Listener Error:",error);
+
+      $("adminMessage").textContent =
+        "Could not load orders: " + error.message;
+
+    }
+  );
+
+}
+
+
+function stopOrdersListener(){
+
+  if(unsubscribeOrders){
+    unsubscribeOrders();
+    unsubscribeOrders = null;
+  }
+
+  allOrders = [];
+
+}
+
+
+/* DASHBOARD STATS */
+
+function updateStats(){
+
+  $("totalOrders").textContent = allOrders.length;
+
+  $("pendingOrders").textContent =
+    allOrders.filter(o => o.status === "Pending").length;
+
+  $("paidOrders").textContent =
+    allOrders.filter(o => o.paymentStatus === "Paid").length;
+
+  $("completedOrders").textContent =
+    allOrders.filter(o => o.status === "Completed").length;
+
+}
+
+
+/* SAFE TEXT HELPER */
+
+function makeText(tag,text){
+
+  const element = document.createElement(tag);
+  element.textContent =
+    text === undefined || text === null || text === ""
+      ? "-"
+      : String(text);
+
+  return element;
+
+}
+
+
+/* RENDER ORDERS */
+
+function renderOrders(){
+
+  const tbody = $("ordersTable");
+  tbody.replaceChildren();
+
+  updateStats();
+
+  if(allOrders.length === 0){
+
+    const tr = document.createElement("tr");
+    const td = makeText("td","No orders found.");
+    td.colSpan = 10;
+    td.className = "empty";
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
+    return;
+
+  }
+
+  allOrders.forEach(order => {
+
+    const tr = document.createElement("tr");
+
+    // Order ID
+    const idCell = document.createElement("td");
+    idCell.appendChild(makeText("strong",order.id));
+    tr.appendChild(idCell);
+
+    // Customer
+    tr.appendChild(makeText("td",order.customerName));
+
+    // Mobile
+    tr.appendChild(makeText("td",order.phone));
+
+    // Print type
+    tr.appendChild(makeText("td",order.printType));
+
+    // Print mode
+    tr.appendChild(makeText("td",order.printMode));
+
+    // Quantity
+    tr.appendChild(makeText("td",order.quantity));
+
+    // File
+    tr.appendChild(makeText("td",order.fileName));
+
+    // Payment selector
+    const paymentCell = document.createElement("td");
+    const paymentSelect = document.createElement("select");
+
+    ["Unpaid","Paid"].forEach(value => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value;
+      paymentSelect.appendChild(option);
+    });
+
+    paymentSelect.value =
+      order.paymentStatus === "Paid" ? "Paid" : "Unpaid";
+
+    paymentCell.appendChild(paymentSelect);
+    tr.appendChild(paymentCell);
+
+    // Order status selector
+    const statusCell = document.createElement("td");
+    const statusSelect = document.createElement("select");
+
+    ["Pending","Processing","Completed","Cancelled"].forEach(value => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value;
+      statusSelect.appendChild(option);
+    });
+
+    const allowedStatuses = [
+      "Pending","Processing","Completed","Cancelled"
+    ];
+
+    statusSelect.value =
+      allowedStatuses.includes(order.status)
+        ? order.status
+        : "Pending";
+
+    statusCell.appendChild(statusSelect);
+    tr.appendChild(statusCell);
+
+    // Actions
+    const actionCell = document.createElement("td");
+
+    const updateButton = document.createElement("button");
+    updateButton.className = "btn";
+    updateButton.textContent = "Update";
+
+    updateButton.addEventListener("click", async () => {
+
+      if(auth.currentUser?.uid !== ADMIN_UID){
+        alert("Admin authorization required.");
+        return;
+      }
+
+      updateButton.disabled = true;
+      updateButton.textContent = "Saving...";
+
+      try{
+
+        await updateDoc(
+          doc(db,"orders",order.id),
+          {
+            paymentStatus:paymentSelect.value,
+            status:statusSelect.value
+          }
+        );
+
+        $("adminMessage").textContent =
+          "Order " + order.id + " updated successfully.";
+
+      }catch(error){
+
+        console.error(error);
+        alert("Update failed: " + error.message);
+
+      }finally{
+
+        updateButton.disabled = false;
+        updateButton.textContent = "Update";
+
+      }
+
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "btn danger";
+    deleteButton.textContent = "Delete";
+
+    deleteButton.addEventListener("click", async () => {
+
+      if(auth.currentUser?.uid !== ADMIN_UID){
+        alert("Admin authorization required.");
+        return;
+      }
+
+      const confirmDelete = confirm(
+        "Are you sure you want to delete Order " +
+        order.id + "?"
+      );
+
+      if(!confirmDelete) return;
+
+      deleteButton.disabled = true;
+
+      try{
+
+        await deleteDoc(doc(db,"orders",order.id));
+
+        $("adminMessage").textContent =
+          "Order deleted successfully.";
+
+      }catch(error){
+
+        console.error(error);
+        alert("Delete failed: " + error.message);
+
+      }finally{
+
+        deleteButton.disabled = false;
+
+      }
+
+    });
+
+    actionCell.appendChild(updateButton);
+    actionCell.appendChild(deleteButton);
+
+    tr.appendChild(actionCell);
+
+    tbody.appendChild(tr);
 
   });
+
+}
+
+
+/* MANUAL REFRESH */
+
+$("refreshOrders").addEventListener("click", () => {
+
+  if(auth.currentUser?.uid !== ADMIN_UID){
+    alert("Please login as Admin.");
+    return;
+  }
+
+  startOrdersListener();
 
 });
 
